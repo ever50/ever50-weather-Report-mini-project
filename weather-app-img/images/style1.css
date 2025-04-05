@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background: #222;
+}
+.card{
+    width:90%;
+    max-width: 470px;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    color: #fff;
+    margin: 100px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+}
+.search{    /* to make searrch element at the center and input and search button in same line*/
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;/* space between means it is at the center of the page*/
+}
+.search input{
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    color: #555;
+    padding: 10px 25px;
+    height: 60px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 18px;
+}
+.search button{
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+.search button img{
+    width: 10px;
+}
+.weather-icon{  /*for weathe-icon description*/
+    width: 170px;
+    margin-top: 30px;
+}
+.weather h1{  /*weather-icon description h1 line is equal*/
+    font-size: 80px;
+    font-weight: 500;
+}
+.weather h2{  /*similarly same as like h1 make same with h2*/
+    font-size: 45px;
+    font-weight: 400;
+    margin-top: -10px;
+}
+.details {  /* to make humidt and wind details horizontally side by side */
+    display: flex;  /* flex majorly for columns and grid for rows */
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;  /*it is left from right side */
+    margin-top: 50px;
+}
+.col{  /*size of the both icons and size of both*/
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+.col img{
+    width: 40px;
+    margin-right: 10px;
+}
+.humidity, .wind{ /* for text located in <p></p> make text good look */
+    font-size: 28px;
+    margin-top: -6px;
+}
+.weather{
+    display: none;
+}
+.error{
+    text-align: left;
+    margin-left: 10px;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width", inital-scale="1.0">
+        <title> Weather App</title>
+        <link rel="stylesheet" href="style1.css">
+    </head>
+    <body>
+        <div class="card">
+            <div class="search">
+                <input type="text" placeholder="enter city name"
+                spellcheck="false">
+                <button><img src="search1.png"</button>
+            </div>
+            <div class="error">
+                <p>Invalid city name</p>
+            </div>
+            <div class="weather">
+                <img src="rain.png" class="weather-icon">
+                <h1 class="temp">22°C</h1>
+                <h2 class="city">India</h2>
+                <div class="details">
+                    <div class="col">    <!--for humidity description-->
+                        <img src="humidity.png">
+                        <div>
+                            <p class="humidity">50%</p>
+                            <p>Humidity</p>
+                        </div>
+                    </div>
+                    <div class="col">   <!--for wind description-->
+                        <img src="wind.png">
+                        <div>
+                            <p class="wind">15km/h</p>
+                            <p>Wind Speed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script>
+        const apiKey = "a35b2004d1de60477187439092f4d97b";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+        const searchBox = document.querySelector(".search input");
+        const searchBtn = document.querySelector(".search button");
+        //the above two lines send the information to the below lines // 
+        const weatherIcon = document.querySelector(".weather-icon");
+        async function checkWeather(city) {//input enter in thec ity name //
+            const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+            if(response.status == 404){
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".weather").style.display = "none";
+            }else{
+                var data = await response.json();// the data of the location given in the input//
+            //console.log(data); it is when we not use the display: none because it closed the table//
+            // api gives the information to the below //
+            document.querySelector(".city").innerHTML = data.name;// document.queryselector(.city) is the data collected from city from the html code so we used to get .innerhtml to get tha code from html//
+            document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";  //  °C is used for to show the temp in °C only and math.round is used to get nearset values in//
+            document.querySelector(".humidity").innerHTML = data.main.humidity + "%"; //   % is used because of humidity in ic show in % format //
+            document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+
+            //to update the image similar to the  weather report condition  we used this//
+            if(data.weather[0].main == "clouds"){
+                weatherIcon.src = "images/clouds.png";
+            }
+            else if(data.weather[0].main == "clear"){
+                weatherIcon.src = "images/clear.png";
+            }
+            else if(data.weather[0].main == "Rain"){
+                weatherIcon.src = "images/rain.png";
+            }
+            else if(data.weather[0].main == "Drizzle"){
+                weatherIcon.src = "images/drizzle.png";
+            }
+            else if(data.weather[0].main == "Mist"){
+                weatherIcon.src = "images/mist.png";
+            }
+            document.querySelector(".weather").style.display = "block";
+            document.querySelector(".error").style.display = "none";
+            
+
+            }
+            
+        }
+        searchBtn.addEventListener("click",()=>{
+            checkWeather(searchBox.value); //it give the city name which given in the input boc// 
+            //it will the information to checkwather city name with apiUrl+city+apikey//
+        })
+        
+    </script>
+    </body>
+</html>
